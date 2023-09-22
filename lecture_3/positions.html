@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Positioning</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: red;
+        min-height: 200vh;
+        overflow: auto;
+      }
+
+      .wrapper {
+        margin: 100px 0;
+        padding: 50px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+        align-items: center;
+        background: #2d67c4;
+
+        /* position: relative; */
+      }
+
+      .item {
+        height: 200px;
+        background: #78aa00;
+        color: white;
+        font-size: 36px;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border: 5px dashed black;
+      }
+
+      .static {
+        position: static;
+        z-index: 2;
+      }
+
+      .relative {
+        position: relative;
+        top: 100px;
+        left: -100px;
+        z-index: 3;
+      }
+
+      .absolute {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .fixed {
+        position: fixed;
+        width: 200px;
+        top: calc(50% - 100px);
+        left: calc(50% - 100px);
+        z-index: 5;
+      }
+
+      .sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 100px;
+        /* left: 0; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outside"></div>
+    <div class="wrapper">
+      <div class="item static">Static</div>
+      <div class="item relative">Relative</div>
+      <div class="item absolute">Absolute</div>
+      <div class="item fixed">Fixed</div>
+      <div class="item sticky">Sticky</div>
+    </div>
+  </body>
+</html>
