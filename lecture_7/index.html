@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML form</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            width: 50%;
+            margin: 200px auto;
+        }
+
+        .field-wrapper {
+            margin-bottom: 30px;
+        }
+
+        input {
+            display: block;
+            border-radius: 4px;
+            outline: none;
+            height: 24px;
+            min-width: 200px;
+            border: 1px solid #a8a8a8;
+            padding: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <h3>My data form</h3>
+        <div class="field-wrapper">
+            <label for="username">Username:</label>
+            <input id="username" type="text" name="username" placeholder="Type username" required />
+        </div>
+        <div class="field-wrapper">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password"  placeholder="Type password" required minlength="8" maxlength="20"/>
+        </div>
+        <div class="field-wrapper">
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" id="last_name" />
+        </div>
+        <div class="field-wrapper">
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" id="first_name" />
+        </div>
+        <div class="field-wrapper">
+            <label for="phone">Phone:</label>
+            <input type="phone" name="phone" id="phone" required placeholder="+7 777-777-77-77" pattern="[+][0-9]{1} [0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" />
+        </div>
+        <!-- <button type="submit">Submit</button> -->
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+</body>
+</html>
