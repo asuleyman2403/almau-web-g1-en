@@ -1,0 +1,31 @@
+<html>
+    <head></head>
+    <body>
+        <div>
+            <div class="item">Item 1</div>
+            <div class="item item-2">Item 2</div>
+            <div class="item">Item 3</div>
+        </div>
+        <ul>
+            <li>List item 1</li>
+            <li class="item">List item 2</li>
+            <li>List item 3</li>
+        </ul>
+        <ol>
+            <li>List item 1</li>
+            <li>List item 2</li>
+            <li>List item 3</li>
+        </ol>
+        <script>
+            const itemElements = document.getElementsByClassName('item');
+            console.log(itemElements);
+
+            for (let i = 0; i < itemElements.length; i++) {
+                itemElements[i].style = 'color: red';
+            }
+
+            const listElements = document.getElementsByTagName('LI');
+            console.log(listElements);
+        </script>
+    </body>
+</html>

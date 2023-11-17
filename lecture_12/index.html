@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Lecture 12</title>
+        <style>
+            .title-styles {
+                font-size: 20px;
+                color: aqua;
+            }
+
+            .font-bold {
+                font-weight: 700;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1 id="dom">DOM = Document object manipulation</h1>
+        <ul id="task-list"></ul>
+        <script>
+            const titleElement = document.getElementById('dom');
+            const nonExistingElement = document.getElementById('dom-1');
+            console.log(titleElement, nonExistingElement);
+            // titleElement.style = "color: red; font-size: 18px";
+            titleElement.className = "title-styles";
+            titleElement.classList.add('font-bold');
+
+            const taskList = ['Task 1', 'Task 2', 'Task 3'];
+            const ulElement = document.getElementById('task-list');
+        
+            let content = '';
+
+            for (let i = 0; i < taskList.length; i++) {
+                // const li = document.createElement('LI');
+                // li.innerText = taskList[i];
+                // ulElement.appendChild(li);
+
+                content += `<li>${taskList[i]}</li>`;
+            }
+            ulElement.innerHTML = content;
+
+
+            const timeout = setTimeout(function () {
+                ulElement.innerHTML = '<li>No tasks for today</li>';
+                clearTimeout(timeout);
+            }, 2000);
+
+
+            ulElement.remove();
+        </script>           
+    </body>
+</html>
