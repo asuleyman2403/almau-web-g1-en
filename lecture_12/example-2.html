@@ -1,0 +1,128 @@
+<html>
+  <head>
+    <title>Lecture 12 Part 2</title>
+    <style>
+      .students-table {
+        border: 1px solid black;
+      }
+
+      .students-item {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+      }
+
+      .students-item__info.title {
+        font-weight: 600;
+      }
+
+      .students-item__info {
+        padding: 10px;
+        border: 1px solid black;
+      }
+
+      .students_item__action button {
+        background: red;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        font-weight: 600;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <button onclick="onButtonClick(event)">Click me!</button> -->
+    <button class="click-me-button">Click me!</button>
+    <button class="click-me-button">Click me!</button>
+    <button class="click-me-button">Click me!</button>
+    <div class="students-table" id="students-table">
+      <div class="students-item">
+        <div class="students-item__info students-item__name title">Name</div>
+        <div class="students-item__info students-item__grade title">Grade</div>
+        <div class="students-item__info students-item__school title">School</div>
+        <div class="students-item__info students-item__school title">Actions</div>
+      </div>
+      <div class="students-table__content" id="table-content"></div>
+    </div>
+    <script>
+      const wrapper = document.getElementById('table-content');
+
+      let students = [
+        {
+          name: 'Student 1',
+          grade: 85,
+          school: 'SDS',
+        },
+        {
+          name: 'Student 2',
+          grade: 100,
+          school: 'SDS',
+        },
+      ];
+
+      showStudents();
+
+      function showStudents() {
+        let studentsHTML = [];
+
+        for (let i = 0; i < students.length; i++) {
+          studentsHTML.push(
+            `
+                        <div class="students-item">
+                            <div class="students-item__info students-item__name">${students[i].name}</div>
+                            <div class="students-item__info students-item__grade">${students[i].grade}</div>    
+                            <div class="students-item__info students-item__school">${students[i].school}</div>
+                            <div class="students-item__info students_item__action">
+                                <button onClick="deleteStudentFromTable(${i})">Delete</button>    
+                            </div>
+                        </div>
+                    `,
+          );
+        }
+
+        wrapper.innerHTML = studentsHTML.join('');
+      }
+
+      function deleteStudentFromTable(index) {
+        const newStudents = [];
+
+        for (let i = 0; i < students.length; i++) {
+          if (i !== index) {
+            newStudents.push(students[i]);
+          }
+        }
+
+        students = newStudents;
+        showStudents();
+      }
+    </script>
+    <script>
+      function onButtonClick(event) {
+        console.log('User clicked me!');
+      }
+
+      const buttons = document.getElementsByClassName('click-me-button');
+
+      for (let i = 0; i < buttons.length; i++) {
+        // buttons[i].addEventListener('click', onButtonClick);
+      }
+
+      function onMouseEnter(event) {
+        console.log('User entered to student item', event);
+      }
+
+      function onMouseLeave(event) {
+        console.log('User left student item', event);
+      }
+
+      const studentsItems = document.getElementsByClassName('students-item');
+
+      for (let item of studentsItems) {
+        // item.addEventListener('mouseenter', onMouseEnter);
+        // item.addEventListener('mouseleave', onMouseLeave);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Example 3</title>
+        <style>
+            .input--error {
+                border: 1px solid red;
+            }
+
+            .error-text {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="input-field">
+            <label for="input">Enter your username: </label>
+            <input type="text" id="input" onchange="onChange(event)">
+            <button onclick="getInputValue(event)">Click</button>
+        </div>
+        <script>
+            function getInputValue(event) {
+                const input = document.getElementById('input');
+                if (input) {
+                    console.log(input.value);
+                }
+            }
+
+            function onChange(e) {
+                const username = e.target.value;
+                const fieldDiv = document.getElementById('input-field');
+
+                if (username?.length >= 8) {
+                    e.target.className = '';
+                    const ps = fieldDiv.getElementsByClassName('error-text');
+                    if (ps.length) {
+                        for (let p of ps) {
+                            p.remove();
+                        }
+                    }
+                } else {
+                    e.target.className = 'input--error';
+                    const p = document.createElement('P');
+                    p.innerHTML = `Your username can not less than 8 characters`;
+                    p.className = 'error-text';
+                    fieldDiv.appendChild(p);
+                }
+            }
+        </script>
+    </body>
+</html>
