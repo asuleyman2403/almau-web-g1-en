@@ -37,7 +37,6 @@ for (let i = 0; i < properties.length; i++) {
 
 console.log('######');
 
-
 for (let key of properties) {
     console.log(student[key]);
 }

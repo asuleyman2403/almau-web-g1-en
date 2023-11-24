@@ -1,0 +1,22 @@
+.sign-up-form {
+    border: 5px solid #232525;
+    margin: 50px 20%;
+    margin-top: 150px;
+    height: 50vh;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+}
