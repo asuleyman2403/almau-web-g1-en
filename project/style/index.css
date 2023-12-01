@@ -8,8 +8,8 @@
 @import url('./custom/accomplishments.css');
 @import url('./custom/reviews.css');
 @import url('./custom/footer.css');
-@import url('./custom/modal.css');
+@import url('./custom/contact-modal.css');
 
 body{
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
 }

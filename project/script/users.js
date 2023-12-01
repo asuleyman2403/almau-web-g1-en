@@ -1,54 +1,98 @@
-const users = [
-    {
-        name: 'name 1',
-        username: 'username_1',
-        password: 'password_1',
-        email: 'email_1'
-    },
-    {
-        name: 'name 2',
-        username: 'username_2',
-        password: 'password_2',
-        email: 'email_2'
-    },
-    {
-        name: 'name 3',
-        username: 'username_3',
-        password: 'password_3',
-        email: 'email_3'
-    },
+const mockUsers = [
+  {
+    name: 'Assyl',
+    surname: 'Suleiman',
+    username: 'assyl_suleiman',
+    password: 'test_1234',
+  },
+  {
+    name: 'Second',
+    surname: 'User',
+    username: 'second_user',
+    password: 'test_1234',
+  },
+  {
+    name: 'Third',
+    surname: 'User',
+    username: 'third_user',
+    password: 'test_1234',
+  },
+  {
+    name: 'Fourth',
+    surname: 'User',
+    username: 'fourth_user',
+    password: 'test_1234',
+  },
 ];
 
-const userStr = localStorage.getItem('currentUser');
-const currentUser = JSON.parse(userStr);
-const nav = document.getElementById('nav');
-if (currentUser) {
-    nav.innerHTML = `${nav.innerHTML} <a class = "nav__link" href="#">Моя корзина</a>
-    <a class = "nav__link" href="#">Выйти</a>`;
-} else {
-    nav.innerHTML = `${nav.innerHTML} <a class = "nav__link nav__link_bordered" href="/sign-up.html" id = "signUp">Регистрация</a>
-    <a class = "nav__link nav__link_bordered" href="/login.html">Войти</a>`;
+if (!localStorage.getItem('users')) {
+  localStorage.setItem('users', JSON.stringify(mockUsers));
 }
 
+const users = JSON.parse(localStorage.getItem('users'));
 
-function onSubmitClick () {
-    const form = document.getElementById('form');
-    const inputs = form.getElementsByTagName('input');
+function onLogin() {
+  const loginForm = document.getElementById('login-form');
+  const user = {};
 
-    const user = {};
+  const inputs = loginForm.getElementsByTagName('input');
 
-    for (let i = 0; i < inputs.length; i++) {
-        user[inputs[i].name] = inputs[i].value;
+  for (let i = 0; i < inputs.length; i++) {
+    user[inputs[i].name] = inputs[i].value;
+  }
+
+  let currentUser = null;
+
+  for (let i = 0; i < users.length; i++) {
+    if (user.username === users[i].username && user.password === users[i].password) {
+      currentUser = users[i];
+      break;
     }
+  }
 
-    delete user.repeatPassword;
-
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    users.push(user);
-    localStorage.setItem('users', JSON.stringify(users));
-
-    window.location.href = `http://localhost:5500`;
-    console.log(user);
+  if (currentUser) {
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    window.location.href = 'http://127.0.0.1:5500/';
+  } else {
+    const p = document.getElementById('error-text');
+    p.innerHTML = 'Пользователь не найден';
+    p.className = 'validation-text visible';
+  }
 }
 
+function onRegister() {
+  const loginForm = document.getElementById('login-form');
+  const user = {};
 
+  const inputs = loginForm.getElementsByTagName('input');
+
+  for (let i = 0; i < inputs.length; i++) {
+    user[inputs[i].name] = inputs[i].value;
+  }
+
+  let isAlreadExist = false;
+
+  for (let i = 0; i < users.length; i++) {
+    if (user.username === users[i].username) {
+      isAlreadExist = true;
+      break;
+    }
+  }
+
+  if (!isAlreadExist) {
+    const currentUser = {
+      name: user.name,
+      surname: user.surname,
+      username: user.username,
+      password: user.password,
+    };
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    users.push(currentUser);
+    localStorage.setItem('users', JSON.stringify(users));
+    window.location.href = 'http://127.0.0.1:5500/';
+  } else {
+    const p = document.getElementById('error-text');
+    p.innerHTML = 'Пользователь уже существует';
+    p.className = 'validation-text visible';
+  }
+}
